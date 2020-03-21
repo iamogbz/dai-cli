@@ -5,7 +5,7 @@ clean:
 .PHONY: install
 install: clean
 	@stack update
-	@stack install
+	@stack build --copy-compiler-tool
 
 .PHONY: lint
 lint: clean
