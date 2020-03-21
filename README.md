@@ -1,4 +1,4 @@
-# Dead & Injured
+# Dead & Injured ![Haskell CI](https://github.com/iamogbz/dai/workflows/Haskell%20CI/badge.svg)
 
 Sample cli game made with haskell
 
@@ -39,3 +39,5 @@ stack exec dai-exe
 ```
 
 ![demo.gif](https://user-images.githubusercontent.com/2528959/77232698-08bc6280-6b79-11ea-8aa1-a5b4dffd9814.gif)
+
+## [Contribute](./CONTRIBUTING.md)
