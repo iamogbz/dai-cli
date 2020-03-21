@@ -5,7 +5,7 @@ clean:
 .PHONY: install
 install: clean
 	@stack update
-	@stack install --dependencies-only --keep-going
+	@stack install
 
 .PHONY: lint
 lint: clean
