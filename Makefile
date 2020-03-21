@@ -1,6 +1,6 @@
 .PHONY: clean
 clean:
-	@rm dai.cabal
+	@rm -f dai.cabal
 
 .PHONY: install
 install: clean
