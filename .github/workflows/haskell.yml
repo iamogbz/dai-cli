@@ -11,13 +11,9 @@ jobs:
       with:
         ghc-version: '8.6.5'
         cabal-version: '2.4'
-    - name: Install
-      run: make install
-    - name: Lint
-      run: make lint
     - name: Build
       run: stack build
-    - name: Run tests
+    - name: Test
       run: make coverage
-    - name: Run benchmarks
+    - name: Benchmark
       run: stack bench
