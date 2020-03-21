@@ -5,6 +5,7 @@ module Lib
 import           Control.Monad
 import           Data.Maybe
 import           Guess
+import           System.Random
 
 main = launch
 
@@ -26,7 +27,8 @@ nextGuess prevGuessResults = do
   if null possible
     then return Nothing
     else do
-      let guess = head possible
+      randomI <- randomRIO (0, length possible)
+      let guess = possible !! randomI
       putStrLn ("My guess is: " ++ showGuess guess)
       putStrLn "How many dead? "
       l <- getLine
