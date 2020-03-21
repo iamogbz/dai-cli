@@ -18,6 +18,7 @@ spec = do
     forM_
       [ ([GuessResult (1, 2, 3, 4) 4 0], 1)
       , ([GuessResult (1, 2, 3, 4) 0 4], 9)
+      , ([GuessResult (1, 2, 3, 4) 0 4, GuessResult (4, 3, 2, 1) 0 0], 0)
       , ([GuessResult (1, 2, 3, 4) 0 4, GuessResult (2, 1, 3, 4) 1 3], 4)
       , ( [ GuessResult (1, 2, 3, 4) 1 1
           , GuessResult (9, 8, 7, 6) 1 1

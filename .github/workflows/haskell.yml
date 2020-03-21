@@ -18,6 +18,6 @@ jobs:
     - name: Build
       run: stack build
     - name: Run tests
-      run: stack test
+      run: make coverage
     - name: Run benchmarks
       run: stack bench
