@@ -39,11 +39,6 @@ executables:
 
 tests:
   dai-test:
-    main:                Spec.hs
-    source-dirs:         test
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
+    defaults: hspec/hspec@9f3f4c3
     dependencies:
     - dai

@@ -1,6 +1,8 @@
 module Guess
   ( Guess(..)
   , GuessResult(..)
+  , countDead
+  , countInjured
   , limitPossible
   , showGuess
   ) where

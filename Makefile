@@ -14,3 +14,7 @@ lint: clean
 .PHONY: watch
 watch: clean
 	@stack build --file-watch
+
+.PHONY: coverage
+coverage: clean
+	@stack test --coverage
