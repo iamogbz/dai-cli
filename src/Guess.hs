@@ -1,6 +1,7 @@
 module Guess
   ( Guess(..)
   , GuessResult(..)
+  , allPossible
   , limitPossible
   , showGuess
   ) where
@@ -10,7 +11,7 @@ import           Data.List
 -- Given a list of results get all the remaining possible guesses
 limitPossible :: [GuessResult] -> [Guess]
 limitPossible constraints =
-  [guess | guess <- allPossible, all (isPossible guess) constraints]
+  filter (\g -> all (isPossible g) constraints) allPossible
 
 -- All possible guesses in the game
 allPossible :: [Guess]
