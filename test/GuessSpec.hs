@@ -12,13 +12,19 @@ spec = do
       (\(toPrint, expectedString) ->
          it ("pretty prints guess " ++ show toPrint) $
          showGuess toPrint `shouldBe` expectedString)
-  describe "countInjured" $
+  describe "allPossible" $
+    it "captures all possible permutations" $ length allPossible `shouldBe` 3024
+  describe "limitPossible" $
     forM_
-      [ ((1, 2, 3, 4), 0)
-      , ((9, 3, 5, 7), 1)
-      , ((6, 4, 2, 0), 2)
-      , ((4, 3, 2, 1), 4)
+      [ ([GuessResult (1, 2, 3, 4) 4 0], 1)
+      , ([GuessResult (1, 2, 3, 4) 0 4], 9)
+      , ([GuessResult (1, 2, 3, 4) 0 4, GuessResult (2, 1, 3, 4) 1 3], 4)
+      , ( [ GuessResult (1, 2, 3, 4) 1 1
+          , GuessResult (9, 8, 7, 6) 1 1
+          , GuessResult (2, 3, 7, 8) 0 1
+          ]
+        , 12)
       ]
-      (\(toCompare, expectedCount) ->
-         it ("counts number of injured " ++ show toCompare) $
-         countInjured (1, 2, 3, 4) toCompare `shouldBe` expectedCount)
+      (\(results, expectedCount) ->
+         it "correctly limits possible values" $
+         length (limitPossible results) `shouldBe` expectedCount)
