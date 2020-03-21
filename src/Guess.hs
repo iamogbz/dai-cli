@@ -1,7 +1,8 @@
 module Guess
-  ( Guess
-  , GuessResult
+  ( Guess(..)
+  , GuessResult(..)
   , limitPossible
+  , showGuess
   ) where
 
 import           Data.List
@@ -62,6 +63,10 @@ data GuessResult =
     , injured :: Int
     }
   deriving (Show)
+
+-- pretty print guess
+showGuess :: Guess -> String
+showGuess (a, b, c, d) = concatMap show [a, b, c, d]
 
 -- guess type
 type Guess = (Int, Int, Int, Int)
