@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3b76c901a298cf0ce2018c2757a7e33d37985cf72cd43c76eaa0ea44aaba2822
+-- hash: cb1a5b6ac60a087a053db3075a0d6cd23db5aa283d5b3b193b61c5c3bdd5978b
 
 name:           dai
 version:        0.1.0.0
@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      Guess
       Lib
   other-modules:
       Paths_dai
