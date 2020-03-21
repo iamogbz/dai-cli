@@ -5,7 +5,8 @@ clean:
 .PHONY: install
 install: clean
 	@stack update
-	@stack build --copy-compiler-tool
+	# install dev deps
+	@stack build hlint --copy-compiler-tool
 
 .PHONY: lint
 lint: clean
