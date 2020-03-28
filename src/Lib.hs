@@ -27,7 +27,7 @@ nextGuess prevGuessResults = do
   if null possible
     then return Nothing
     else do
-      randomI <- randomRIO (0, length possible)
+      randomI <- randomRIO (0, length possible - 1)
       let guess = possible !! randomI
       putStrLn ("My guess is: " ++ showGuess guess)
       putStrLn "How many dead? "
