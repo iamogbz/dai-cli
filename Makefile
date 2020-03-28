@@ -31,3 +31,8 @@ watch: clean
 .PHONY: coverage
 coverage: clean
 	@stack test --coverage
+
+.PHONY: run
+run: clean
+	@stack build
+	@stack exec dai-exe
