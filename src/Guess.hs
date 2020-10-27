@@ -9,18 +9,18 @@ module Guess
 import           Data.List
 
 -- Given a list of results get all the remaining possible guesses
-limitPossible :: [GuessResult] -> [Guess]
-limitPossible constraints =
-  filter (\g -> all (isPossible g) constraints) allPossible
+limitPossible :: [Int] -> [GuessResult] -> [Guess]
+limitPossible range constraints =
+  filter (\g -> all (isPossible g) constraints) $ allPossible range
 
 -- All possible guesses in the game
-allPossible :: [Guess]
-allPossible =
+allPossible :: [Int] -> [Guess]
+allPossible range =
   [ (a, b, c, d)
-  | a <- validRange
-  , b <- validRange
-  , c <- validRange
-  , d <- validRange
+  | a <- range
+  , b <- range
+  , c <- range
+  , d <- range
   , isValid (a, b, c, d)
   ]
 
@@ -52,9 +52,6 @@ countInjured (a, b, c, d) (w, x, y, z) =
     , c `elem` [w, x, z]
     , d `elem` [w, x, y]
     ]
-
--- Range of valid numbers allowed in a guess
-validRange = [1 .. 9]
 
 -- guess result
 data GuessResult =

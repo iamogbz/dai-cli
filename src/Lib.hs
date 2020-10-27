@@ -11,19 +11,25 @@ main = launch
 
 launch :: IO ()
 launch = do
-  putStrLn "Pick a hidden number (press Enter to continue)"
+  putStrLn "Enter the lowest digit e.g. 0 or 1"
   l <- getLine
-  result <- nextGuess []
+  let from = read l :: Int
+  let to = 9
+  putStrLn "Pick a hidden number"
+  putStrLn $ "4 non repeating digits between " ++ show from ++ " and " ++ show to
+  putStrLn "Enter to continue ↵"
+  l <- getLine
+  result <- nextGuess [from .. to] []
   if isNothing result
     then do
       putStrLn "Oops unable to guess your number!"
       putStrLn "Are you sure you gave me the right answers?"
     else putStrLn "Who's the best? I am! I am the best."
 
-nextGuess :: [GuessResult] -> IO (Maybe GuessResult)
-nextGuess prevGuessResults = do
+nextGuess :: [Int] -> [GuessResult] -> IO (Maybe GuessResult)
+nextGuess range prevGuessResults = do
   putStrLn ""
-  let possible = limitPossible prevGuessResults
+  let possible = limitPossible range prevGuessResults
   if null possible
     then return Nothing
     else do
@@ -39,4 +45,4 @@ nextGuess prevGuessResults = do
           putStrLn "How many injured? "
           l <- getLine
           let injuredN = read l :: Int
-          nextGuess (GuessResult guess deadN injuredN : prevGuessResults)
+          nextGuess range (GuessResult guess deadN injuredN : prevGuessResults)

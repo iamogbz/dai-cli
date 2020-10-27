@@ -34,8 +34,7 @@ The round ends when a guess is made with `4` dead digits 🎉.
 ## Run
 
 ```sh
-stack build
-stack exec dai-exe
+make run
 ```
 
 ![demo.gif](https://user-images.githubusercontent.com/2528959/77232698-08bc6280-6b79-11ea-8aa1-a5b4dffd9814.gif)
