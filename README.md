@@ -14,7 +14,7 @@ The best possible score is `1` 😁.
 
 Your opponent chooses a number matching the following condition without revealing it to you:
 
-1. The number must be 4 digits long.
+1. The number must be `N` digits long.
 1. The number must not have repeated digits.
 1. Each digit must be in the range `1..9`.
    Optionally include `0` to expand the possibiliies.
@@ -29,9 +29,9 @@ The result is a count of "Dead" and "Injured" digits.
   Example; with a hidden number of `1234` and a guess of `2354`, the number of injured is `2`
 
 The sum of dead and injured counts can not exceed 4.
-The round ends when a guess is made with `4` dead digits 🎉.
+The round ends when a guess is made with `N` dead digits 🎉.
 
-## Run
+### Run
 
 ```sh
 make run
@@ -39,4 +39,4 @@ make run
 
 ![demo.gif](https://user-images.githubusercontent.com/2528959/77232698-08bc6280-6b79-11ea-8aa1-a5b4dffd9814.gif)
 
-## [Contribute](./CONTRIBUTING.md)
+- [Contribute](./CONTRIBUTING.md)
