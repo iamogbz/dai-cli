@@ -9,20 +9,15 @@ module Guess
 import           Data.List
 
 -- Given a list of results get all the remaining possible guesses
-limitPossible :: [Int] -> [GuessResult] -> [Guess]
-limitPossible range constraints =
-  filter (\g -> all (isPossible g) constraints) $ allPossible range
+limitPossible :: [Int] -> Int -> [GuessResult] -> [Guess]
+limitPossible allowedDigits numDigits prevGuesses =
+  filter (\g -> all (isPossible g) prevGuesses) $ allPossible allowedDigits numDigits
 
 -- All possible guesses in the game
-allPossible :: [Int] -> [Guess]
-allPossible range =
-  [ (a, b, c, d)
-  | a <- range
-  , b <- range
-  , c <- range
-  , d <- range
-  , isValid (a, b, c, d)
-  ]
+allPossible :: [Int] -> Int -> [Guess]
+allPossible _ 0 = [[] | isValid [] 0]
+allPossible allowedDigits numDigits =
+  [ x : rest | x <- allowedDigits, rest <- allPossible allowedDigits (numDigits - 1), isValid (x:rest) numDigits ]
 
 -- Given a result check if a guess is still possibly correct
 isPossible :: Guess -> GuessResult -> Bool
@@ -31,27 +26,19 @@ isPossible g r = countDead g' g == dead r && countInjured g' g == injured r
     g' = guess r
 
 -- Checks if a guess is valid i.e. has no repeated numbers
-isValid :: Guess -> Bool
-isValid (a, b, c, d) = length (nub xs) == length xs
-  where
-    xs = [a, b, c, d]
+isValid :: Guess -> Int -> Bool
+isValid xs n = length (nub xs) == n && length xs == n
 
 -- Check how many numbers in the guess match in the same possition
 countDead :: Guess -> Guess -> Int
-countDead (a, b, c, d) (w, x, y, z) =
-  sum $ map fromEnum [a == w, b == x, c == y, d == z]
+countDead [] _ = 0
+countDead _ [] = 0
+countDead (x:xs) (y:ys) = fromEnum (x == y) + countDead xs ys
 
 -- Check how many numbers in the guess match but not in the same position
 countInjured :: Guess -> Guess -> Int
-countInjured (a, b, c, d) (w, x, y, z) =
-  sum $
-  map
-    fromEnum
-    [ a `elem` [x, y, z]
-    , b `elem` [w, y, z]
-    , c `elem` [w, x, z]
-    , d `elem` [w, x, y]
-    ]
+countInjured [] _ = 0
+countInjured xs ys = sum [fromEnum $ elem x ys | x <- xs] - countDead xs ys
 
 -- guess result
 data GuessResult =
@@ -64,7 +51,7 @@ data GuessResult =
 
 -- pretty print guess
 showGuess :: Guess -> String
-showGuess (a, b, c, d) = concatMap show [a, b, c, d]
+showGuess = concatMap show
 
 -- guess type
-type Guess = (Int, Int, Int, Int)
+type Guess = [Int]
