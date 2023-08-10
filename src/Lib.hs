@@ -19,7 +19,7 @@ launch = do
   n <- getLine
   let len = read n :: Int
   putStrLn "Pick a hidden number"
-  putStrLn $ "4 non repeating digits between " ++ show from ++ " and " ++ show to
+  putStrLn $ n ++ " non repeating digits between " ++ show from ++ " and " ++ show to
   putStrLn "Enter to continue ↵"
   l <- getLine
   result <- nextGuess [from .. to] len []
